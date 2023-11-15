@@ -5,5 +5,4 @@
 #Ignore Stackleauge_log_Report.txt
 Stackleauge_Log_Report.txt
 
-/Stackleauge_Log_Report.txt
-*/Data
+Data/
