@@ -1,7 +1,7 @@
 # Ignore all .xlsx files
 *.xlsx
 Data/
-
+Stackleague_Log_Report.txt
 
 
 
