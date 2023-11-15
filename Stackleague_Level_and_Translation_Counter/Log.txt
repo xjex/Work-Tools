@@ -1,0 +1,8 @@
+Level Counts:
+low mid     12
+high         8
+low          4
+high mid     2
+Complete Translation: 12
+Total Contribution: 26
+-------------------
