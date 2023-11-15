@@ -1,7 +1,11 @@
-## Ex_El 🧮
+## Ex_ExL 🧮
 
-- This is a Tool to count a certain numbers in an excel file
+_Extract Excel_
+
 - Python based Counter using pandas and openpyxl
+- This is a Tool to extract and count a certain rows in an excel file
+- This will count the occurance of words in a certain row
+- Count target values
 
 This will read a MS Excel Document, Extract target informations and logs in a `.txt` file
 
