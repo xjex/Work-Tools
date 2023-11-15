@@ -1,0 +1,10 @@
+-------------------
+Nov 08 - 14
+Level Counts:
+low mid     12
+low          9
+high mid     9
+high         5
+Complete Translation: 21
+Total Contribution: 35
+-------------------
