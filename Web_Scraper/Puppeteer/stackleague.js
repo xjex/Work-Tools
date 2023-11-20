@@ -24,7 +24,8 @@ const credentials = {
 
   // Get the URL of the page
   const reload = await page.url();
-  const targetUrl = "https://www.stackleague.com/admin/user-contributions";
+  //usercontri.
+  const targetUrl = process.env.ADMIN_URL;
   console.log("URL:", reload);
 
   //check if you are in the Contribution dashboard
@@ -117,6 +118,6 @@ const credentials = {
   const file = fs.createWriteStream(filePath);
   file.write(JSON.stringify(data));
   file.end();
-  console.log(`JSON created successfully! \n ${filePath}${fileName}`);
+  console.log(`JSON created successfully! \n ${output}${fileName}`);
   await browser.close();
 })();
