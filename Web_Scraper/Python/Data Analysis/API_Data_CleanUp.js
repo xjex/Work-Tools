@@ -19,11 +19,12 @@ function extractData(problem) {
     },
     comments: problem.comments,
     Language: problem.tests.flatMap((test) => test.language.name),
-    score: problem.score,
+    score: problem.score.flatMap((score) => score.points),
     authorId: problem.authorId,
     insertedAt: problem.insertedAt,
     updatedAt: problem.updatedAt,
     skillTags: problem.skillTags,
+    skillOverView: Object.entries(problem.skillTags),
   };
 }
 
