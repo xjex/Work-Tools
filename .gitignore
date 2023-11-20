@@ -2,6 +2,12 @@
 *.xlsx
 Data/
 Stackleague_Log_Report.txt
+Output/
 
+# Ignore env file
+.env
+
+#Ignore Node Modules
+node_modules/
 
 
