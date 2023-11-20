@@ -52,7 +52,7 @@ if __name__ == "__main__":
     print(f"Cleaning successful. Cleaned JSON file saved at {output_json_file}")
 
 
-    clean_data = "../Output/output_cleaned.json"
+    clean_data = "../Output/Puppeteer_web_cleaned.json"
     output_excel_file = '../Output/Puppeteer_Clean_Excel.xlsx'
 
     json_to_excel(clean_data, output_excel_file)
