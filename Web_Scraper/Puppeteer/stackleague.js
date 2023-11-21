@@ -7,7 +7,7 @@ const credentials = {
 
 (async () => {
   //get only 50 data on JSON
-  const getOnly = 50;
+  const getOnly = 60;
 
   const browser = await puppeteer.launch({ headless: false });
   const page = await browser.newPage();
@@ -120,4 +120,29 @@ const credentials = {
   file.end();
   console.log(`JSON created successfully! \n ${output}${fileName}`);
   await browser.close();
+
+  await new Promise((resolve) => {
+    console.log("Writing Data (5 seconds)...)");
+    setTimeout(resolve, 5000);
+  });
+  execute();
 })();
+
+const { exec } = require("child_process");
+
+// Replace 'your_command_here' with the actual command you want to run
+const execute = () => {
+  const commandToRun = `Python  "../Python/PuppetCleanUp.py"`;
+
+  exec(commandToRun, (error, stdout, stderr) => {
+    if (error) {
+      console.error(`Error: ${error.message}`);
+      return;
+    }
+    if (stderr) {
+      console.error(`stderr: ${stderr}`);
+      return;
+    }
+    console.log(`stdout: ${stdout}`);
+  });
+};
