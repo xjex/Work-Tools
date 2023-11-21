@@ -6,7 +6,7 @@ def json_to_excel(json_file, excel_file):
     # Read JSON file into a Pandas DataFrame
     df = pd.read_json(json_file)
 
-    # Write the DataFrame to an Excel file
+   
     df.to_excel(excel_file, index=False)
 
 def clean_json_file(input_file, output_file):
@@ -42,10 +42,10 @@ def remove_time_related_strings(contribution_text):
     return cleaned_contribution.strip()
 
 if __name__ == "__main__":
-    # Replace 'input.json' with the path to your input JSON file
+    
     input_json_file = '../Output/Puppeteer_web_scraped_data.json'
     
-    # Replace 'output_cleaned.json' with the desired output cleaned JSON file path
+    
     output_json_file = '../Output/Puppeteer_web_cleaned.json'
 
     clean_json_file(input_json_file, output_json_file)
