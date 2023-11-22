@@ -13,7 +13,7 @@ class Colors:
     WHITE = '\033[97m'
 
 # Replace 'your_file.xlsx' with the actual filename of your spreadsheet
-file_path = "../Output/Puppeteer_Clean_Excel.xlsx"
+file_path = "./Output/Puppeteer_Clean_Excel.xlsx"
 
 # Install openpyxl if not already installed
 try:
