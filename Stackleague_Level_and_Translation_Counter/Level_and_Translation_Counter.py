@@ -13,7 +13,7 @@ class Colors:
     WHITE = '\033[97m'
 
 # Replace 'your_file.xlsx' with the actual filename of your spreadsheet
-file_path = "./Stackleague_Level_and_Translation_Counter/dir2.xlsx"
+file_path = "./dir1.xlsx"
 
 # Install openpyxl if not already installed
 try:
@@ -26,14 +26,26 @@ except ImportError:
 # Load the spreadsheet into a DataFrame
 df = pd.read_excel(file_path)
 
-# Count occurrences of each direction
-levels_count = df['Levels'].value_counts()
+
+level_counts_by_name = df.groupby(['Name', 'Levels']).size().unstack(fill_value=0)
+
+# Count occurrences of each directionn
+
 complete_translation_count = (df['Score'] == 1800.0).sum()
 title = df["Name"].dropna().unique().tolist()
+levels_count = df['Levels'].value_counts()
+author_levels_count = df.groupby(['Author', 'Levels']).size().unstack(fill_value=0)
+author_contributions = df.groupby(['Author','Levels']).size().to_frame('Contributions')
+author_levels_count['Total'] = author_levels_count[['high', 'high mid', 'low','low mid']].sum(axis=1, numeric_only=True)
+author_levels_count.loc['Total'] = author_levels_count.sum()
+author_levels_count.loc['-'] = "-"
+author_levels_count.loc['Complete Translation', 'Total'] = complete_translation_count
+author_levels_count.loc['Complete Translation'] = author_levels_count.loc['Complete Translation'].fillna("-")
 
 
 # Prepare the log content
-log_content = f"Level Counts:\n{levels_count.to_string()}\nComplete Translation: {complete_translation_count}\nTotal Contribution: {len(title)}\n-------------------\n"
+
+log_content = f"------------Level Counts:\n{levels_count.to_string()}\nComplete Translation: {complete_translation_count}\nTotal Contribution: {len(title)}\n {author_levels_count} \n\n-------------------\n"
 #clear console
 os.system('cls' if os.name == 'nt' else 'clear')
 # Display the counts
@@ -72,12 +84,15 @@ if user_input.lower() == 'y':
         validation = input (f"is {Colors.GREEN}{file_name}{Colors.WHITE} correct? (y/n)").lower()
 
         if validation == 'y':
+
             log_content_with_name = f"-------------------\n{file_name}\nLevel Counts:\n{levels_count.to_string()}\nComplete Translation: {complete_translation_count}\nTotal Contribution: {len(title)}\n-------------------\n"
             with open(log_file_path, 'a') as log_file:
                 log_file.write(log_content_with_name)
+                Excel_path = 'Weekly Report.xlsx'
+                author_levels_count.to_excel(Excel_path)
             os.system('cls' if os.name == 'nt' else 'clear')    
             print(Colors.GREEN)
-            print(f"Log written to {log_file_path}")
+            print(f"Log written to {log_file_path} , Excel file written to {Excel_path}")
             print(Colors.RESET)
             save_log = True
             break  # Exit the loop if the name is correct
