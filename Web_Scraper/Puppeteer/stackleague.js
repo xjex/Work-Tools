@@ -6,7 +6,7 @@ const credentials = {
 };
 
 (async () => {
-  //get only 50 data on JSON
+  //get only 60 data on JSON file
   const getOnly = 60;
 
   const browser = await puppeteer.launch({ headless: false });
@@ -24,7 +24,8 @@ const credentials = {
 
   // Get the URL of the page
   const reload = await page.url();
-  //usercontri.
+
+  //usercontribution
   const targetUrl = process.env.ADMIN_URL;
   console.log("URL:", reload);
 
@@ -70,17 +71,17 @@ const credentials = {
   //countdown in console
 
   //title
-  const className = "MuiTypography-root MuiTypography-subtitle1";
+  const title = "MuiTypography-root MuiTypography-subtitle1";
   //contributor
   const contrib = "MuiTypography-colorTextSecondary";
   //status if pending or not
   const status = "MuiChip-label MuiChip-labelSmall";
 
-  //get words, contributor, and status
-  const words = await page.evaluate((className) => {
-    const elements = Array.from(document.getElementsByClassName(className));
+  //get titles, contributor, and status
+  const titles = await page.evaluate((title) => {
+    const elements = Array.from(document.getElementsByClassName(title));
     return elements.map((element) => element.textContent.trim());
-  }, className);
+  }, title);
 
   const contribs = await page.evaluate((contrib) => {
     const elements = Array.from(document.getElementsByClassName(contrib));
@@ -93,15 +94,15 @@ const credentials = {
   }, status);
 
   //console check if has data
-  // console.log("Titles:", words);
+  // console.log("Titles:", titles);
   // console.log("Contributors:", contribs);
 
-  //put words and contribs in JSON
+  //put titles and contribs in JSON check only pending
   let data = [];
   for (let i = 0; i < getOnly; i++) {
     if (stats[i] === "Pending") {
       data.push({
-        Title: words[i],
+        Title: titles[i],
         Contribution: contribs[i],
         Status: stats[i],
       });
@@ -121,6 +122,7 @@ const credentials = {
   console.log(`JSON created successfully! \n ${output}${fileName}`);
   await browser.close();
 
+  //Wait for the data to be written in JSON
   await new Promise((resolve) => {
     console.log("Writing Data (5 seconds)...)");
     setTimeout(resolve, 5000);
@@ -130,7 +132,7 @@ const credentials = {
 
 const { exec } = require("child_process");
 
-// Replace 'your_command_here' with the actual command you want to run
+// Execute the python script
 const execute = () => {
   const commandToRun = `Python  "../Python/PuppetCleanUp.py"`;
 
