@@ -9,7 +9,7 @@ Puppeteer script will only scrape [Title, Author, Status]
 ### Output
 
 - `Puppeteer/stackleague.js` -> `Puppeteer_web_scraped_data.json`
-- `Python/PuppetCleanUp.py` -> [`Puppeteer_web_cleaned.json`, `Puppeteer_Clean_Excel.xlsx`]
+- `Python/PuppetCleanUp.py` -> [`Puppeteer_web_cleaned.json`, `Puppeteer_Clean_Excel.xlsx`, `Puppeteer_Google_Drive_Ready.xlxs`]
 
 # API Based Data Analysis
 
@@ -40,3 +40,15 @@ Puppeteer WebScraper
 ### Output
 
 - `Stackleague_Log_Report_analytics.txt`
+
+#### `UPDATE Log`
+
+_November 20 , 2023_
+
+- Puppeteer WebScraper
+  - Added function to mimic the google drive `Master Challenge Contribution` format (spacing and colors)
+
+_November 21 , 2023_
+
+- Puppeteer WebScraper
+  - Added triggers to (`Puppeteer/stackleague.js`) to automatically run Python Clean up Scripts (`Python/PuppetCleanUp.py` `) after scraping.
