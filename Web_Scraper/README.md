@@ -41,6 +41,8 @@ Puppeteer WebScraper
 
 - `Stackleague_Log_Report_analytics.txt`
 
+---
+
 #### `UPDATE Log`
 
 _November 20 , 2023_
