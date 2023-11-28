@@ -17,14 +17,18 @@ Puppeteer script will only scrape [Title, Author, Status]
 
 ## Data Extractions
 
-1. Extract Data from API Via Postman (`API.json`)
-2. Run `Python/Data Analyis/API_Data_CleanUp.js` (This will clean and extract Important informations)
-3. Run `Python/Data Analyis/API_Write_Data_Excel` (This will write All the Cleaned Data in an Excel File)
+> **Old Version**
+>
+> 1. Extract Data from API Via Postman (`API.json`)
+> 2. Run `Python/Data Analyis/API_Data_CleanUp.js` (This will clean and extract Important informations)
+> 3. Run `Python/Data Analyis/API_Write_Data_Excel` (This will write All the Cleaned Data in an Excel File)
+
+1. Run `Data Analysis/Request.py` (This will do all the function of the previous version)
 
 ### Output
 
-- `Python/Data Analyis/API_Data_CleanUp.js` -> `Clean_API.json`
-- `Python/Data Analyis/API_Write_Data_Excel` -> `API_Data.xlsx`
+- `Python/Data Analyis/API_Data_CleanUp.js` -> `Scraper_Clean_API.json`
+- `Python/Data Analyis/API_Write_Data_Excel` -> `Scraper_API_Data.xlsx`
 
 # Author Contribution Data Analysis
 
@@ -54,3 +58,8 @@ _November 21 , 2023_
 
 - Puppeteer WebScraper
   - Added triggers to (`Puppeteer/stackleague.js`) to automatically run Python Clean up Scripts (`Python/PuppetCleanUp.py` `) after scraping.
+
+_November 28 , 2023_
+
+- API Scraper
+  - Added `Data Analysis/Request.py` Single script to run all API scraping
