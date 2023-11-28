@@ -3,12 +3,18 @@ import pandas as pd
 import json
 import datetime
 import os
+from dotenv import load_dotenv
 
+load_dotenv()
 current_datetime = datetime.datetime.now()
 date = current_datetime.strftime("%Y-%m-%d")
 folder_path = f'../Output/stackdata/{date}/'
 os.makedirs(folder_path, exist_ok=True)
-url = "https://www.stackleague.com/api/custom_problems?status=pending"
+url = os.getenv("URL")
+auth = os.getenv("AUTH")
+ref = os.getenv("REF")
+cookie = os.getenv("COOKIE")
+# Define the headers
 
 
 headers = {
@@ -19,9 +25,9 @@ headers = {
     "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36"
     " (KHTML, like Gecko) Chrome/89.0.4389.90 Safari/537.36",
     "Accept-Language": "en-US,en;q=0.9",
-    "Referer": "https://www.stackleague.com/admin/user-contributions",
-    "Authorization": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJzdGFja3RyZWtfYWNjb3VudCIsImV4cCI6MTcwMjk2ODI1MywiaWF0IjoxNzAwNTQ5MDUzLCJpc3MiOiJzdGFja3RyZWtfYWNjb3VudCIsImp0aSI6IjYzYjMyZGUwLWJhODMtNDU3MS05NDdmLTE1MDRmYWEzMDM4OCIsIm5iZiI6MTcwMDU0OTA1Miwic3ViIjoiNjI4MzQiLCJ0eXAiOiJhY2Nlc3MifQ.hX7PVKv9HsXJ1gND4g4F5yO6aFaTbQhIUMrGUnbtJ-_A6yTE_2jnPnssvI9IFYjAIr1F1qBoSc1u7P2fTMlRUw",
-    "Cookie": "_hjFirstSeen=1; _hjIncludedInSessionSample_3466922=1; _hjSession_3466922=eyJpZCI6IjRhMjZiOWNjLTMwMWEtNDQwOC04MjAzLWM0OWZiNWRjYjkxNCIsImNyZWF0ZWQiOjE3MDA1NDkwNDYzMTksImluU2FtcGxlIjp0cnVlLCJzZXNzaW9uaXplckJldGFFbmFibGVkIjpmYWxzZX0=; _hjSessionUser_3466922=eyJpZCI6ImJkNzcwNDBhLTgxOTUtNTQ0Yi05OGE0LTkyZjhmZWJhZjljYyIsImNyZWF0ZWQiOjE3MDA1NDkwNDYzMTgsImV4aXN0aW5nIjp0cnVlfQ==; _hjAbsoluteSessionInProgress=0; _ga=GA1.1.484857375.1700549047; welcome-notif=false; stacktrek-token=eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJzdGFja3RyZWtfYWNjb3VudCIsImV4cCI6MTcwMjk2ODI1MywiaWF0IjoxNzAwNTQ5MDUzLCJpc3MiOiJzdGFja3RyZWtfYWNjb3VudCIsImp0aSI6IjYzYjMyZGUwLWJhODMtNDU3MS05NDdmLTE1MDRmYWEzMDM4OCIsIm5iZiI6MTcwMDU0OTA1Miwic3ViIjoiNjI4MzQiLCJ0eXAiOiJhY2Nlc3MifQ.hX7PVKv9HsXJ1gND4g4F5yO6aFaTbQhIUMrGUnbtJ-_A6yTE_2jnPnssvI9IFYjAIr1F1qBoSc1u7P2fTMlRUw; _ga_1PY4BQGEMP=GS1.1.1700549047.1.1.1700549170.59.0.0"
+    "Referer": ref,
+    "Authorization": auth,
+    "Cookie": cookie
 
     # Add any other headers as needed
 }
