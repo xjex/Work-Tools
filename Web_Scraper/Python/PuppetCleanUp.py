@@ -6,6 +6,7 @@ import os
 from openpyxl import Workbook
 from openpyxl.styles import PatternFill
 
+import datetime
 
 def spacing_excel_for_gdrive(json_file, output_file):
     # Load JSON data from file
@@ -81,21 +82,27 @@ def remove_time_related_strings(contribution_text):
     return cleaned_contribution.strip()
 
 if __name__ == "__main__":
-    
-    input_json_file = '../Output/Puppeteer_web_scraped_data.json'
-    
-    output_json_file = '../Output/Puppeteer_web_cleaned.json'
+    # Create a folder for the output files
+    current_datetime = datetime.datetime.now()
+    date = current_datetime.strftime("%Y-%m-%d")
+    folder_path = f'../Output/stackdata/{date}'
+    os.makedirs(folder_path, exist_ok=True)
+
+
+    input_json_file = f'../Output/stackdata/{date}/Puppeteer_web_scraped_data.json'
+    output_json_file = f'../Output/stackdata/{date}/Puppeteer_web_cleaned.json'
+
     os.system('cls' if os.name == 'nt' else 'clear')
     clean_json_file(input_json_file, output_json_file)
     print(f"Cleaning successful. Cleaned JSON file saved at {output_json_file}")
 
-
+    
     clean_data = "../Output/Puppeteer_web_cleaned.json"
-    output_excel_file = '../Output/Puppeteer_Clean_Excel.xlsx'
+    output_excel_file = f'../Output/stackdata/{date}/Puppeteer_Clean_Excel.xlsx'
     
     json_to_excel(clean_data, output_excel_file)
     print(f"Conversion successful. Excel file saved at {output_excel_file}")
 
-    output_drive_file = '../Output/Puppeteer_Google_Drive_Ready.xlsx'
+    output_drive_file = f'../Output/stackdata/{date}/Puppeteer_Google_Drive_Ready.xlsx'
     spacing_excel_for_gdrive(clean_data, output_drive_file)
     print(f"GoogleDrive Format. Excel file saved at {output_drive_file}")

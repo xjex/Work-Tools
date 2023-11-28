@@ -7,7 +7,7 @@ const credentials = {
 
 (async () => {
   //get only 60 data on JSON file
-  const getOnly = 60;
+  const getOnly = 150;
 
   const browser = await puppeteer.launch({ headless: false });
   const page = await browser.newPage();
@@ -113,13 +113,25 @@ const credentials = {
   //put data in JSON
   const fs = require("fs");
   const path = require("path");
-  const output = "../Output/";
+  // Create a Date object to get the current date
+  const currentDate = new Date();
+
+  // Format the date as YYYY-MM-DD
+  const formattedDate = currentDate.toISOString().slice(0, 10);
+
+  // Create the folder path with the formatted date
+  const output = "../Output/stackdata";
+  const folderPath = path.join(output, formattedDate);
+
+  // Create the folder
+  fs.mkdirSync(folderPath, { recursive: true });
+
   const fileName = "Puppeteer_web_scraped_data.json";
-  const filePath = path.join(__dirname, output, fileName);
+  const filePath = path.join(__dirname, folderPath, fileName);
   const file = fs.createWriteStream(filePath);
   file.write(JSON.stringify(data));
   file.end();
-  console.log(`JSON created successfully! \n ${output}${fileName}`);
+  console.log(`JSON created successfully! \n ${folderPath}${fileName}`);
   await browser.close();
 
   //Wait for the data to be written in JSON

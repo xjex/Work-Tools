@@ -1,6 +1,6 @@
 import pandas as pd
 import os
-
+import datetime
 #CLI Colors
 class Colors:
     RESET = '\033[0m'
@@ -12,8 +12,10 @@ class Colors:
     CYAN = '\033[96m'
     WHITE = '\033[97m'
 
+current_datetime = datetime.datetime.now()
+date = current_datetime.strftime("%Y-%m-%d")
 # Replace 'your_file.xlsx' with the actual filename of your spreadsheet
-file_path = "./Output/Puppeteer_Clean_Excel.xlsx"
+file_path = f"../Output/stackdata/{date}/Puppeteer_Clean_Excel.xlsx"
 
 # Install openpyxl if not already installed
 try:
@@ -60,7 +62,7 @@ while user_input.lower() not in ('y', 'n'):
 
 if user_input.lower() == 'y':
     # Write the log to a text file
-    log_file_path = '../Output/Stackleague_Log_Report_analytics.txt'
+    log_file_path = f'../Output/stackdata/{date}/Stackleague_Log_Report_analytics.txt'
 
      # Step 1: Enter name
     file_name = input("Enter Log Title name: ")

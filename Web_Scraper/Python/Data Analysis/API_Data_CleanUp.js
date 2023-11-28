@@ -1,7 +1,9 @@
 const fs = require("fs");
 
+const currentDate = new Date();
+const formattedDate = currentDate.toISOString().slice(0, 10);
 // Read the JSON file
-const jsonFilePath = "../Output/API.json"; // Replace with the actual path to your JSON file
+const jsonFilePath = `../Output/stackdata/${formattedDate}/GetRequest.json`; // Replace with the actual path to your JSON file
 const jsonData = fs.readFileSync(jsonFilePath, "utf-8");
 const data = JSON.parse(jsonData);
 
@@ -31,8 +33,10 @@ function extractData(problem) {
 // Extract data for each problem in the 'data' array
 const extractedData = data.data.map(extractData);
 
+// Format the date as YYYY-MM-DD
+
 // Write the extracted data to a new JSON file
-const outputFilePath = "../Output/Clean_API.json"; // Replace with the desired output path
+const outputFilePath = `../Output/stackdata/${formattedDate}/Clean_API.json`; // Replace with the desired output path
 fs.writeFileSync(outputFilePath, JSON.stringify(extractedData, null, 2));
 
 console.log(`Extracted data written to ${outputFilePath}`);
