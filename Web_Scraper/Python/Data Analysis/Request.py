@@ -30,8 +30,8 @@ def Response():
     response = requests.get(url, headers=headers)
     
     if response.status_code == 200:
-        print("POST request successful")
-        print("Response content:", response.text)
+        #print("POST request successful")
+        #print("Response content:", response.text)
         # Convert the JSON response to a dictionary
         
         with open(f"{folder_path}Scraper_GetRequest.json", "w") as json_file:
@@ -46,7 +46,7 @@ def Response():
 Response()
 
 # Read the JSON file
-json_file_path = f"{folder_path}GetRequest.json"  # Replace with the actual path to your JSON file
+json_file_path = f"{folder_path}Scraper_GetRequest.json"  # Replace with the actual path to your JSON file
 with open(json_file_path, "r", encoding="utf-8") as json_file:
     data = json.load(json_file)
 
@@ -93,7 +93,7 @@ with open(f'{folder_path}Scraper_Clean_API.json', 'r') as file:
 df = pd.json_normalize(json_data)
 
 # Specify the output Excel file path
-excel_file_path = f'{folder_path}/Scraper_API_Data.xlsx'  # Replace with the desired output file path
+excel_file_path = f'{folder_path}Scraper_API_Data.xlsx'  # Replace with the desired output file path
 
 # Write the DataFrame to an Excel file
 df.to_excel(excel_file_path, index=False)
