@@ -58,25 +58,28 @@ with open(json_file_path, "r", encoding="utf-8") as json_file:
 
 # Function to extract the desired information
 def extract_data(problem):
-    return {
-        "id": problem["id"],
-        "name": problem["name"],
-        "status": problem["status"],
-        "author": {
-            "id": problem["author"]["id"],
-            "email": problem["author"]["email"],
-            "firstName": problem["author"]["firstName"],
-            "lastName": problem["author"]["lastName"],
-        },
-        "comments": problem["comments"],
-        "Language": [test["language"]["name"] for test in problem["tests"]],
-        "score": [score["points"] for score in problem["score"]],
-        "authorId": problem["authorId"],
-        "insertedAt": problem["insertedAt"],
-        "updatedAt": problem["updatedAt"],
-        "skillTags": problem["skillTags"],
-        "skillOverView": list(problem["skillTags"].items()),
-    }
+     if problem["id"] > 2195:
+        return {
+            "id": problem["id"],
+            "name": problem["name"],
+            "status": problem["status"],
+            "author": {
+                "id": problem["author"]["id"],
+                "email": problem["author"]["email"],
+                "firstName": problem["author"]["firstName"],
+                "lastName": problem["author"]["lastName"],
+            },
+            "comments": problem["comments"],
+            "Language": [test["language"]["name"] for test in problem["tests"]],
+            "score": [score["points"] for score in problem["score"]],
+            "authorId": problem["authorId"],
+            "insertedAt": problem["insertedAt"],
+            "updatedAt": problem["updatedAt"],
+            "skillTags": problem["skillTags"],
+            "skillOverView": list(problem["skillTags"].items()),
+        }
+     else:
+        return None
 
 
 # Extract data for each problem in the 'data' array
