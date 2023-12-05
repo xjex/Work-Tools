@@ -7,7 +7,7 @@ const credentials = {
 
 (async () => {
   //get only 60 data on JSON file
-  const getOnly = 150;
+  const getOnly = 550;
 
   const browser = await puppeteer.launch({ headless: false });
   const page = await browser.newPage();
